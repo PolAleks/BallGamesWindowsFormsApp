@@ -20,6 +20,9 @@ namespace BallGamesWindowsFormsApp
         {
             CreateGraphics().Clear(SystemColors.Control);
 
+            buttonCreate.Enabled = false;
+            buttonStop.Enabled = true;
+
             balls = new List<MoveBall>();
             for (int i = 0; i < 10; i++)
             {
@@ -33,11 +36,14 @@ namespace BallGamesWindowsFormsApp
         {
             balls.ForEach(b => b.Stop());
             
-            int countBall = balls.Where(b => !b.LostWindow()).Count();
+            int countBall = balls.Where(b => b.OnForm()).Count();
 
             string message = GetWinMessage(countBall);
 
             MessageBox.Show(message, "Конец игры", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            buttonStop.Enabled = false;
+            buttonCreate.Enabled = true;
         }
 
         private string GetWinMessage(int count)
@@ -52,5 +58,9 @@ namespace BallGamesWindowsFormsApp
             }
         }
 
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            buttonStop.Enabled = false;
+        }
     }
 }

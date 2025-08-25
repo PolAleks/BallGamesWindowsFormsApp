@@ -13,7 +13,7 @@ namespace BallGamesWindowsFormsApp
             _timer.Tick += _timer_Tick;
         }
 
-        public bool LostWindow() => x < 0 || x > outsideX || y < 0 || y > outsideY;
+        public bool OnForm() => x >= 0 && x <= outsideX && y >= 0 && y <= outsideY;
 
         private void _timer_Tick(object sender, EventArgs e) => Move();
 

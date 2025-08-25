@@ -19,9 +19,7 @@ namespace BallGamesWindowsFormsApp
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             CreateGraphics().Clear(SystemColors.Control);
-
-            buttonCreate.Enabled = false;
-            buttonStop.Enabled = true;
+            ButtonEnabled();
 
             balls = new List<MoveBall>();
             for (int i = 0; i < 10; i++)
@@ -31,6 +29,7 @@ namespace BallGamesWindowsFormsApp
                 ball.Start();
             }
         }
+
 
         private void buttonStop_Click(object sender, EventArgs e)
         {
@@ -42,8 +41,7 @@ namespace BallGamesWindowsFormsApp
 
             MessageBox.Show(message, "Конец игры", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-            buttonStop.Enabled = false;
-            buttonCreate.Enabled = true;
+            ButtonEnabled();
         }
 
         private string GetWinMessage(int count)
@@ -58,6 +56,11 @@ namespace BallGamesWindowsFormsApp
             }
         }
 
+        private void ButtonEnabled()
+        {
+            buttonCreate.Enabled = !buttonCreate.Enabled;
+            buttonStop.Enabled = !buttonStop.Enabled;
+        }
         private void FormMain_Load(object sender, EventArgs e)
         {
             buttonStop.Enabled = false;

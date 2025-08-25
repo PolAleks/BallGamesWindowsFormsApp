@@ -15,8 +15,8 @@ namespace BallGamesWindowsFormsApp
             x = rand.Next(size, outsideX);
             y = rand.Next(size, outsideY);
 
-            vx = rand.Next(-10, 11);
-            vy = rand.Next(-10, 11);
+            vx = rand.Next(-5, 6);
+            vy = rand.Next(-5, 6);
         }
     }
 }

@@ -49,21 +49,24 @@ namespace CatchMEWindowsFormsApp
         {
             Point point = e.Location;
 
-            for (int i = 0; i < balls.Count; i++)
+            if (balls != null)
             {
-                var ball = balls[i];
-                if (!ball.OnForm())
+                for (int i = 0; i < balls.Count; i++)
                 {
-                    balls.Remove(ball);
-                    continue;
-                }
-                if (ball.Catch(point))
-                {
-                    if (ball.OnMove())
+                    var ball = balls[i];
+                    if (!ball.OnForm())
                     {
-                        countCaughtBalls++;
-                        ShowCountCaughtBalls();
-                        ball.Stop();
+                        balls.Remove(ball);
+                        continue;
+                    }
+                    if (ball.Catch(point))
+                    {
+                        if (ball.OnMove())
+                        {
+                            countCaughtBalls++;
+                            ShowCountCaughtBalls();
+                            ball.Stop();
+                        }
                     }
                 }
             }

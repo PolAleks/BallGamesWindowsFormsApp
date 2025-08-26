@@ -21,7 +21,7 @@ namespace BallGames.Common
         public bool Catch(Point point)
         {
             var distanse = Math.Sqrt(Math.Pow(X - point.X, 2) + Math.Pow(Y - point.Y, 2));
-            return distanse <= size;
+            return distanse <= size / 2;
         }
 
         public bool OnMove() => Status();

@@ -9,7 +9,7 @@ namespace BallGamesWindowsFormsApp
         public MoveBall(Form form) : base(form)
         {
             _timer = new Timer();
-            _timer.Interval = 20;
+            _timer.Interval = 50;
             _timer.Tick += _timer_Tick;
         }
 
@@ -21,6 +21,6 @@ namespace BallGamesWindowsFormsApp
 
         public void Stop() => _timer.Stop();
 
-        protected bool Status() => _timer.Enabled;
+        public bool IsMovable() => _timer.Enabled;
     }
 }

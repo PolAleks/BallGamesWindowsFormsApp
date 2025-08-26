@@ -24,6 +24,6 @@ namespace BallGames.Common
             return distanse <= size / 2;
         }
 
-        public bool OnMove() => Status();
+        public bool OnMove() => IsMovable();
     }
 }

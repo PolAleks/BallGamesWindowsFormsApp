@@ -15,9 +15,14 @@ namespace CatchMEWindowsFormsApp
     public partial class MainForm : Form
     {
         private List<CatchMoveBall> balls;
+        private int countCaughtBalls = 0;
         public MainForm()
         {
             InitializeComponent();
+        }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            ShowCountCaughtBalls();
         }
 
         private void createButton_Click(object sender, EventArgs e)
@@ -30,5 +35,28 @@ namespace CatchMEWindowsFormsApp
                 ball.Start();
             }
         }
+
+        private void MainForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            Point point = e.Location;
+
+            for (int i = 0; i < balls.Count; i++)
+            {
+                var ball = balls[i];
+                if (!ball.OnForm())
+                {
+                    balls.Remove(ball);
+                    continue;
+                }
+                if (ball.Catch(point))
+                {
+                    countCaughtBalls++;
+                    ShowCountCaughtBalls();
+                    ball.Stop();
+                }
+            }
+        }
+
+        private void ShowCountCaughtBalls() => caughtBallsValueLabel.Text = countCaughtBalls.ToString();
     }
 }

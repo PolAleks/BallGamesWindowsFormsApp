@@ -26,26 +26,11 @@ namespace CatchMEWindowsFormsApp
             ShowCountCaughtBalls();
         }
 
-        private void InitialTimer()
-        {
-            timer = new Timer();
-            timer.Interval = 1000;
-            timer.Tick += Timer_Tick;
-            timer.Start();
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            if(!balls.Where(b => b.OnForm()).Any(b => b.OnMove()))
-            {
-                timer.Stop();
-                MessageBox.Show("Конец игры");
-            }
-        }
-
         private void createButton_Click(object sender, EventArgs e)
         {
             CreateGraphics().Clear(BackColor);
+            TurnButtonCreate();
+
             countCaughtBalls = 0;
             ShowCountCaughtBalls();
 
@@ -85,5 +70,39 @@ namespace CatchMEWindowsFormsApp
         }
 
         private void ShowCountCaughtBalls() => caughtBallsValueLabel.Text = countCaughtBalls.ToString();
+
+        private void TurnButtonCreate() => createButton.Enabled = !createButton.Enabled;
+
+        private string GetWinMessage(int count)
+        {
+            switch (count)
+            {
+                case 1: return $"Пойман {count} мяч";
+                case 2:
+                case 3:
+                case 4: return $"Поймано {count} мяча";
+                default: return $"Поймано {count} мячей";
+            }
+        }
+
+        private void InitialTimer()
+        {
+            timer = new Timer();
+            timer.Interval = 100;
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (!balls.Where(b => b.OnForm()).Any(b => b.OnMove()))
+            {
+                timer.Stop();
+
+                string message = GetWinMessage(countCaughtBalls);
+                MessageBox.Show(message, "Конец игры", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TurnButtonCreate();
+            }
+        }
     }
 }

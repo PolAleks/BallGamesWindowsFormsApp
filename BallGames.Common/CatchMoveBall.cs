@@ -12,7 +12,7 @@ namespace BallGames.Common
     public class CatchMoveBall : MoveBall
     {
         private int X => x + size / 2;
-        public int Y => y + size / 2;
+        private int Y => y + size / 2;
 
         public CatchMoveBall(Form form) : base(form)
         {

@@ -11,8 +11,8 @@ namespace BallGames.Common
 {
     public class CatchMoveBall : MoveBall
     {
-        private int X => x + size;
-        public int Y => y + size;
+        private int X => x + size / 2;
+        public int Y => y + size / 2;
 
         public CatchMoveBall(Form form) : base(form)
         {
@@ -23,5 +23,7 @@ namespace BallGames.Common
             var distanse = Math.Sqrt(Math.Pow(X - point.X, 2) + Math.Pow(Y - point.Y, 2));
             return distanse <= size;
         }
+
+        public bool OnMove() => Status();
     }
 }

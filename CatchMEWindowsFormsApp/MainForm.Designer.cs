@@ -1,4 +1,4 @@
-﻿namespace CatchMEWindowsFormsApp
+﻿namespace CatchMeWindowsFormsApp
 {
     partial class MainForm
     {

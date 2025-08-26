@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BallGamesWindowsFormsApp
+namespace Balls.Common
 {
     public class MoveBall : RandomPointBall
     {

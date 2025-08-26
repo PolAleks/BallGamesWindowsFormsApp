@@ -2,11 +2,10 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace BallGamesWindowsFormsApp
+namespace Balls.Common
 {
     public class RandomPointBall : Ball
     {
-        private Size _size;
         private static Random rand = new Random();
         protected int outsideX;
         protected int outsideY;

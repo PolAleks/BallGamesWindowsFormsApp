@@ -61,7 +61,7 @@ namespace CatchMEWindowsFormsApp
                     }
                     if (ball.Catch(point))
                     {
-                        if (ball.OnMove())
+                        if (ball.IsMovable())
                         {
                             countCaughtBalls++;
                             ShowCountCaughtBalls();
@@ -98,7 +98,7 @@ namespace CatchMEWindowsFormsApp
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (!balls.Where(b => b.OnForm()).Any(b => b.OnMove()))
+            if (!balls.Where(b => b.OnForm()).Any(b => b.IsMovable()))
             {
                 timer.Stop();
 

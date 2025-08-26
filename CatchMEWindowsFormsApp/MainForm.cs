@@ -15,7 +15,7 @@ namespace CatchMEWindowsFormsApp
     public partial class MainForm : Form
     {
         private List<CatchMoveBall> balls;
-        private int countCaughtBalls = 0;
+        private int countBalls = 0;
         private Timer timer;
         public MainForm()
         {
@@ -31,7 +31,7 @@ namespace CatchMEWindowsFormsApp
             CreateGraphics().Clear(BackColor);
             TurnButtonCreate();
 
-            countCaughtBalls = 0;
+            countBalls = 0;
             ShowCountCaughtBalls();
 
             balls = new List<CatchMoveBall>();
@@ -59,11 +59,11 @@ namespace CatchMEWindowsFormsApp
                         balls.Remove(ball);
                         continue;
                     }
-                    if (ball.Catch(point))
+                    if (ball.Contains(point))
                     {
                         if (ball.IsMovable())
                         {
-                            countCaughtBalls++;
+                            countBalls++;
                             ShowCountCaughtBalls();
                             ball.Stop();
                         }
@@ -72,7 +72,7 @@ namespace CatchMEWindowsFormsApp
             }
         }
 
-        private void ShowCountCaughtBalls() => caughtBallsValueLabel.Text = countCaughtBalls.ToString();
+        private void ShowCountCaughtBalls() => caughtBallsValueLabel.Text = countBalls.ToString();
 
         private void TurnButtonCreate() => createButton.Enabled = !createButton.Enabled;
 
@@ -102,7 +102,7 @@ namespace CatchMEWindowsFormsApp
             {
                 timer.Stop();
 
-                string message = GetWinMessage(countCaughtBalls);
+                string message = GetWinMessage(countBalls);
                 MessageBox.Show(message, "Конец игры", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 TurnButtonCreate();
             }

@@ -16,7 +16,7 @@ namespace BallGames.Common
 
         public CatchMoveBall(Form form) : base(form) { }
 
-        public bool Catch(Point point)
+        public bool Contains(Point point)
         {
             var distanse = Math.Sqrt(Math.Pow(X - point.X, 2) + Math.Pow(Y - point.Y, 2));
             return distanse <= size / 2;

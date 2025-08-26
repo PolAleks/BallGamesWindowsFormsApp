@@ -21,6 +21,8 @@ namespace BallGamesWindowsFormsApp
             CreateGraphics().Clear(SystemColors.Control);
             ButtonEnabled();
 
+            
+
             balls = new List<MoveBall>();
             for (int i = 0; i < 10; i++)
             {

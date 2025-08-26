@@ -3,12 +3,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BallGamesWindowsFormsApp
 {
     public class Ball
     {
-        protected FormMain form;
+        protected Form form;
         protected Graphics graphics;
 
         public int x = 150;
@@ -17,9 +18,9 @@ namespace BallGamesWindowsFormsApp
         protected int vy = 10;
         protected int size = 60;
 
-        public Ball(FormMain formMain)
+        public Ball(Form form)
         {
-            form = formMain;
+            this.form = form;
             graphics = form.CreateGraphics();
         }
 

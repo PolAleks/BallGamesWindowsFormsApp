@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace BallGamesWindowsFormsApp
 {
     public class RandomPointBall : Ball
     {
+        private Size _size;
         private static Random rand = new Random();
         protected int outsideX;
         protected int outsideY;
-        public RandomPointBall(FormMain formMain) : base(formMain)
+        public RandomPointBall(Form form) : base(form)
         {
             outsideX = form.ClientSize.Width - size;
             outsideY = form.ClientSize.Height - size;

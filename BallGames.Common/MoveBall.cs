@@ -20,5 +20,7 @@ namespace BallGamesWindowsFormsApp
         public void Start() => _timer.Start();
 
         public void Stop() => _timer.Stop();
+
+        protected bool Status() => _timer.Enabled;
     }
 }

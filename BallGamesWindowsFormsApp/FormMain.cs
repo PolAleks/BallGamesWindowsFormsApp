@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Balls.Common;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace BallGamesWindowsFormsApp
@@ -20,6 +20,8 @@ namespace BallGamesWindowsFormsApp
         {
             CreateGraphics().Clear(SystemColors.Control);
             ButtonEnabled();
+
+            
 
             balls = new List<MoveBall>();
             for (int i = 0; i < 10; i++)

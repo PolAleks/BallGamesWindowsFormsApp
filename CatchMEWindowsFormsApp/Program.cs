@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BallGamesWindowsFormsApp
+namespace CatchMeWindowsFormsApp
 {
     internal static class Program
     {
@@ -13,7 +13,7 @@ namespace BallGamesWindowsFormsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Application.Run(new MainForm());
         }
     }
 }

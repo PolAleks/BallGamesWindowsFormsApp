@@ -19,6 +19,14 @@ namespace Balls.Common
         protected int vx = 10;
         protected int vy = 10;
 
+        public int LeftSide => radius;
+
+        public int RightSide => form.ClientSize.Width - radius;
+
+        public int TopSide => radius;
+
+        public int BottomSide => form.ClientSize.Height - radius;
+
         public Ball(Form form)
         {
             this.form = form;

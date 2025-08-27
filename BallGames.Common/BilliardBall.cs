@@ -1,5 +1,6 @@
 ﻿using Balls.Common;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace BallGames.Common
@@ -8,6 +9,11 @@ namespace BallGames.Common
     public class BilliardBall : MoveBall
     {
         public event EventHandler<HitEventArgs> OnHited;
+        public BilliardBall(Form form, Color color) : base(form)
+        {
+            this.color = color;
+        }
+
         public BilliardBall(Form form) : base(form)
         {
         }

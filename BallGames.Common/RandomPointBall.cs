@@ -11,11 +11,11 @@ namespace Balls.Common
         protected int outsideY;
         public RandomPointBall(Form form) : base(form)
         {
-            outsideX = form.ClientSize.Width - size;
-            outsideY = form.ClientSize.Height - size;
+            outsideX = form.ClientSize.Width - radius;
+            outsideY = form.ClientSize.Height - radius;
 
-            x = rand.Next(size, outsideX);
-            y = rand.Next(size, outsideY);
+            centerX = rand.Next(radius, outsideX);
+            centerY = rand.Next(radius, outsideY);
 
             vx = rand.Next(-5, 6);
             vy = rand.Next(-5, 6);

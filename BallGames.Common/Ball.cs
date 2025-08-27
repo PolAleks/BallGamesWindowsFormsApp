@@ -12,11 +12,12 @@ namespace Balls.Common
         protected Form form;
         protected Graphics graphics;
 
-        public int x = 150;
-        public int y = 150;
+        protected int centerX = 150;
+        protected int centerY = 150;
+        protected int radius = 30;
+
         protected int vx = 10;
         protected int vy = 10;
-        protected int size = 60;
 
         public Ball(Form form)
         {
@@ -43,14 +44,14 @@ namespace Balls.Common
 
         private void Go()
         {
-            x += vx;
-            y += vy;
+            centerX += vx;
+            centerY += vy;
         }
 
         private void CreateBall(Color color)
         {
             var brush = new SolidBrush(color);
-            var rectangle = new Rectangle(x, y, size, size);
+            var rectangle = new Rectangle(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
             graphics.FillEllipse(brush, rectangle);
         }
     }

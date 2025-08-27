@@ -13,7 +13,7 @@ namespace Balls.Common
             _timer.Tick += _timer_Tick;
         }
 
-        public bool OnForm() => x >= 0 && x <= outsideX && y >= 0 && y <= outsideY;
+        public bool OnForm() => centerX >= 0 && centerX <= outsideX && centerY >= 0 && centerY <= outsideY;
 
         private void _timer_Tick(object sender, EventArgs e) => Move();
 

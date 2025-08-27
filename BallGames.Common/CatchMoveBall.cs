@@ -10,12 +10,8 @@ namespace Balls.Common
 {
     public class CatchMoveBall : MoveBall
     {
-        private int Radius => size / 2;
-        private int X => x + Radius;
-        private int Y => y + Radius;
-
         public CatchMoveBall(Form form) : base(form) { }
 
-        public bool Contains(Point p) => Math.Sqrt(Math.Pow(X - p.X, 2) + Math.Pow(Y - p.Y, 2)) <= Radius;
+        public bool Contains(Point p) => Math.Sqrt(Math.Pow(centerX - p.X, 2) + Math.Pow(centerY - p.Y, 2)) <= radius;
     }
 }

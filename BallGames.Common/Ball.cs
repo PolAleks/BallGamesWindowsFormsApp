@@ -53,7 +53,7 @@ namespace Balls.Common
             centerY += vy;
         }
 
-        public void Show() => Draw(Color.LightBlue);
+        public void Show() => Draw(color);
         private void Clear() => Draw(SystemColors.Control);
         private void Draw(Color color)
         {

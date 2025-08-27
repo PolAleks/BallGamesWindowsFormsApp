@@ -30,14 +30,14 @@ namespace CheckingDiffusionWindowsFormsApp
 
                 for (int i = 0; i < 10; i++)
                 {
-                    var ball = new BilliardBall(this);
+                    var ball = new BilliardBall(this, Color.Blue, Side.Left);
                     balls.Add(ball);
                     ball.Start();
                 }
 
                 for (int i = 0; i < 10; i++)
                 {
-                    var ball = new BilliardBall(this, Color.Red);
+                    var ball = new BilliardBall(this, Color.Red, Side.Right);
                     balls.Add(ball);
                     ball.Start();
                 }

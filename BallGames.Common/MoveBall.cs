@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Balls.Common
 {
     public class MoveBall : RandomPointBall
     {
-        private Timer _timer;
         public MoveBall(Form form) : base(form)
         {
-            _timer = new Timer();
-            _timer.Interval = 50;
-            _timer.Tick += _timer_Tick;
+            vx = GetSpeed();
+            vy = GetSpeed();
         }
 
-        private void _timer_Tick(object sender, EventArgs e) => Move();
-
-        public void Start() => _timer.Start();
-
-        public void Stop() => _timer.Stop();
-
-        public bool IsMovable() => _timer.Enabled;
+        private int GetSpeed() => rand.Next(2, 6) * (rand.Next(2) == 0 ? 1 : -1);
     }
 }

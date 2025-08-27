@@ -27,7 +27,7 @@ namespace Balls.Common
 
         public void Show()
         {
-            CreateBall(Color.LightBlue);
+            Draw(Color.LightBlue);
         }
 
         public void Move()
@@ -39,7 +39,7 @@ namespace Balls.Common
 
         private void Clear()
         {
-            CreateBall(SystemColors.Control);
+            Draw(SystemColors.Control);
         }
 
         private void Go()
@@ -48,7 +48,7 @@ namespace Balls.Common
             centerY += vy;
         }
 
-        private void CreateBall(Color color)
+        private void Draw(Color color)
         {
             var brush = new SolidBrush(color);
             var rectangle = new Rectangle(centerX - radius, centerY - radius, 2 * radius, 2 * radius);

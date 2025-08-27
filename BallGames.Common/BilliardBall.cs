@@ -1,10 +1,13 @@
 ﻿using Balls.Common;
+using System;
 using System.Windows.Forms;
 
 namespace BallGames.Common
 {
+
     public class BilliardBall : MoveBall
     {
+        public event EventHandler<HitEventArgs> OnHited;
         public BilliardBall(Form form) : base(form)
         {
         }

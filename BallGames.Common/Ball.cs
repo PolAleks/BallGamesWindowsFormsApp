@@ -17,7 +17,7 @@ namespace Balls.Common
         protected int vx = 10;
         protected int vy = 10;
 
-        #region Границы мяча
+        #region Границы поля
         public int LeftSide => radius;
         public int RightSide => form.ClientSize.Width - radius;
         public int TopSide => radius;

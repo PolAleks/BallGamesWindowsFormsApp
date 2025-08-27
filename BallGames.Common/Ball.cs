@@ -44,7 +44,7 @@ namespace Balls.Common
             Go();
             Show();
         }
-        private void Go()
+        protected virtual void Go()
         {
             centerX += vx;
             centerY += vy;

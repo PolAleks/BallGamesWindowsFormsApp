@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BilliardBall.cs" />
     <Compile Include="CatchMoveBall.cs" />
     <Compile Include="MoveBall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

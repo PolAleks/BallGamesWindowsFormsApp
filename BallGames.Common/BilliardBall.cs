@@ -7,8 +7,8 @@ namespace BallGames.Common
 {
     public class BilliardBall : MoveBall
     {
-        
         public event EventHandler<HitEventArgs> OnHited;
+        public Color Color => color; 
         public BilliardBall(Form form, Color color, Side side) : base(form)
         {
             this.color = color;
@@ -29,9 +29,7 @@ namespace BallGames.Common
             }
         }
 
-        public BilliardBall(Form form) : base(form)
-        {
-        }
+        public BilliardBall(Form form) : base(form) { }
 
         protected override void Go()
         {

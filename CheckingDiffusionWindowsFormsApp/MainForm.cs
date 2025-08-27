@@ -2,12 +2,7 @@
 using Balls.Common;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CheckingDiffusionWindowsFormsApp
@@ -15,11 +10,9 @@ namespace CheckingDiffusionWindowsFormsApp
     public partial class MainForm : Form
     {
         private List<Ball> balls;
-        private int merge;
         public MainForm()
         {
             InitializeComponent();
-            merge = ClientSize.Width;
         }
 
         private void MainForm_MouseDown(object sender, MouseEventArgs e)
@@ -32,6 +25,7 @@ namespace CheckingDiffusionWindowsFormsApp
                 {
                     var ball = new BilliardBall(this, Color.Blue, Side.Left);
                     balls.Add(ball);
+                    ball.OnHited += Ball_OnHited;
                     ball.Start();
                 }
 
@@ -39,6 +33,7 @@ namespace CheckingDiffusionWindowsFormsApp
                 {
                     var ball = new BilliardBall(this, Color.Red, Side.Right);
                     balls.Add(ball);
+                    ball.OnHited += Ball_OnHited;
                     ball.Start();
                 }
             }
@@ -48,6 +43,44 @@ namespace CheckingDiffusionWindowsFormsApp
                 {
                     if (ball.IsMovable()) ball.Stop();
                     else ball.Start();
+                }
+            }
+        }
+
+        private void Ball_OnHited(object sender, HitEventArgs e)
+        {
+            if (sender is BilliardBall ball)
+            {
+                Color color = ball.Color;
+
+                switch (e.Side)
+                {
+                    case Side.Left when color == Color.Red:
+                        leftRedLabel.Text = (Convert.ToInt32(leftRedLabel.Text) + 1).ToString();
+                        break;
+                    case Side.Right when color == Color.Red:
+                        rightRedLabel.Text = (Convert.ToInt32(rightRedLabel.Text) + 1).ToString();
+                        break;
+                    case Side.Top when color == Color.Red:
+                        topRedLabel.Text = (Convert.ToInt32(topRedLabel.Text) + 1).ToString();
+                        break;
+                    case Side.Bottom when color == Color.Red:
+                        bottomRedLabel.Text = (Convert.ToInt32(bottomRedLabel.Text) + 1).ToString();
+                        break;
+                    case Side.Left when color == Color.Blue:
+                        leftBlueLabel.Text = (Convert.ToInt32(leftBlueLabel.Text) + 1).ToString();
+                        break;
+                    case Side.Right when color == Color.Blue:
+                        rightBlueLabel.Text = (Convert.ToInt32(rightBlueLabel.Text) + 1).ToString();
+                        break;
+                    case Side.Top when color == Color.Blue:
+                        topBlueLabel.Text = (Convert.ToInt32(topBlueLabel.Text) + 1).ToString();
+                        break;
+                    case Side.Bottom when color == Color.Blue:
+                        bottomBlueLabel.Text = (Convert.ToInt32(bottomBlueLabel.Text) + 1).ToString();
+                        break;
+                    default:
+                        break;
                 }
             }
         }

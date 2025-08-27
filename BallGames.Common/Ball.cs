@@ -9,7 +9,7 @@ namespace Balls.Common
         private Timer _timer;
         protected Form form;
         protected Graphics graphics;
-        protected Color color;
+        protected Color color = Color.LightBlue;
 
         protected int centerX = 150;
         protected int centerY = 150;
@@ -32,8 +32,6 @@ namespace Balls.Common
             _timer = new Timer();
             _timer.Interval = 20;
             _timer.Tick += _timer_Tick;
-
-            color = Color.LightBlue;
         }
         private void _timer_Tick(object sender, EventArgs e) => Move();
         public void Start() => _timer.Start();

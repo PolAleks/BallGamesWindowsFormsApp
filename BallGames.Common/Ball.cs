@@ -1,33 +1,42 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Balls.Common
 {
     public class Ball
     {
+        private Timer _timer;
         protected Form form;
         protected Graphics graphics;
 
-        public int x = 150;
-        public int y = 150;
+        protected int centerX = 150;
+        protected int centerY = 150;
+        protected int radius = 30;
+
         protected int vx = 10;
         protected int vy = 10;
-        protected int size = 60;
 
+        #region Границы поля
+        public int LeftSide => radius;
+        public int RightSide => form.ClientSize.Width - radius;
+        public int TopSide => radius;
+        public int BottomSide => form.ClientSize.Height - radius;
+        #endregion
         public Ball(Form form)
         {
             this.form = form;
             graphics = form.CreateGraphics();
-        }
 
-        public void Show()
-        {
-            CreateBall(Color.LightBlue);
+            _timer = new Timer();
+            _timer.Interval = 50;
+            _timer.Tick += _timer_Tick;
         }
+        private void _timer_Tick(object sender, EventArgs e) => Move();
+        public void Start() => _timer.Start();
+        public void Stop() => _timer.Stop();
+        public bool IsMovable() => _timer.Enabled;
+        public bool OnForm() => centerX >= LeftSide && centerX <= RightSide && centerY >= TopSide && centerY <= BottomSide;
 
         public void Move()
         {
@@ -35,22 +44,18 @@ namespace Balls.Common
             Go();
             Show();
         }
-
-        private void Clear()
+        protected virtual void Go()
         {
-            CreateBall(SystemColors.Control);
+            centerX += vx;
+            centerY += vy;
         }
 
-        private void Go()
-        {
-            x += vx;
-            y += vy;
-        }
-
-        private void CreateBall(Color color)
+        public void Show() => Draw(Color.LightBlue);
+        private void Clear() => Draw(SystemColors.Control);
+        private void Draw(Color color)
         {
             var brush = new SolidBrush(color);
-            var rectangle = new Rectangle(x, y, size, size);
+            var rectangle = new Rectangle(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
             graphics.FillEllipse(brush, rectangle);
         }
     }

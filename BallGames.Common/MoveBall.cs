@@ -1,26 +1,15 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Balls.Common
 {
     public class MoveBall : RandomPointBall
     {
-        private Timer _timer;
         public MoveBall(Form form) : base(form)
         {
-            _timer = new Timer();
-            _timer.Interval = 50;
-            _timer.Tick += _timer_Tick;
+            vx = GetSpeed();
+            vy = GetSpeed();
         }
 
-        public bool OnForm() => x >= 0 && x <= outsideX && y >= 0 && y <= outsideY;
-
-        private void _timer_Tick(object sender, EventArgs e) => Move();
-
-        public void Start() => _timer.Start();
-
-        public void Stop() => _timer.Stop();
-
-        public bool IsMovable() => _timer.Enabled;
+        private int GetSpeed() => rand.Next(2, 6) * (rand.Next(2) == 0 ? 1 : -1);
     }
 }

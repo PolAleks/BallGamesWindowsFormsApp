@@ -15,8 +15,26 @@ namespace BallGames.Common
         protected override void Go()
         {
             base.Go();
-            if (centerX <= LeftSide || centerX >= RightSide) vx = -vx;
-            if (centerY <= TopSide || centerY >= BottomSide) vy = -vy;
+            if (centerX <= LeftSide)
+            {
+                vx = -vx;
+                OnHited?.Invoke(this, new HitEventArgs(Side.Left));
+            }
+            if (centerX >= RightSide)
+            {
+                vx = -vx;
+                OnHited?.Invoke(this, new HitEventArgs(Side.Right));
+            }
+            if (centerY <= TopSide)
+            {
+                vy = -vy;
+                OnHited?.Invoke(this, new HitEventArgs(Side.Top));
+            }
+            if (centerY >= BottomSide)
+            {
+                vy = -vy;
+                OnHited?.Invoke(this, new HitEventArgs(Side.Bottom));
+            }
         }
     }
 }

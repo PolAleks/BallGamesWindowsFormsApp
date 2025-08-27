@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace Balls.Common
 {
     public class Ball
     {
+        private Timer _timer;
         protected Form form;
         protected Graphics graphics;
 
@@ -19,24 +21,25 @@ namespace Balls.Common
         protected int vx = 10;
         protected int vy = 10;
 
+        #region Границы мяча
         public int LeftSide => radius;
-
         public int RightSide => form.ClientSize.Width - radius;
-
         public int TopSide => radius;
-
         public int BottomSide => form.ClientSize.Height - radius;
-
+        #endregion
         public Ball(Form form)
         {
             this.form = form;
             graphics = form.CreateGraphics();
+
+            _timer = new Timer();
+            _timer.Interval = 50;
+            _timer.Tick += _timer_Tick;
         }
-
-        private void Clear() => Draw(SystemColors.Control);
-
-        public void Show() => Draw(Color.LightBlue);
-
+        private void _timer_Tick(object sender, EventArgs e) => Move();
+        public void Start() => _timer.Start();
+        public void Stop() => _timer.Stop();
+        public bool IsMovable() => _timer.Enabled;
         public bool OnForm() => centerX >= LeftSide && centerX <= RightSide && centerY >= TopSide && centerY <= BottomSide;
 
         public void Move()
@@ -45,13 +48,14 @@ namespace Balls.Common
             Go();
             Show();
         }
-
         private void Go()
         {
             centerX += vx;
             centerY += vy;
         }
 
+        public void Show() => Draw(Color.LightBlue);
+        private void Clear() => Draw(SystemColors.Control);
         private void Draw(Color color)
         {
             var brush = new SolidBrush(color);

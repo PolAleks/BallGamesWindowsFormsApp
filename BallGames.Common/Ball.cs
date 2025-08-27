@@ -33,21 +33,17 @@ namespace Balls.Common
             graphics = form.CreateGraphics();
         }
 
-        public void Show()
-        {
-            Draw(Color.LightBlue);
-        }
+        private void Clear() => Draw(SystemColors.Control);
+
+        public void Show() => Draw(Color.LightBlue);
+
+        public bool OnForm() => centerX >= LeftSide && centerX <= RightSide && centerY >= TopSide && centerY <= BottomSide;
 
         public void Move()
         {
             Clear();
             Go();
             Show();
-        }
-
-        private void Clear()
-        {
-            Draw(SystemColors.Control);
         }
 
         private void Go()

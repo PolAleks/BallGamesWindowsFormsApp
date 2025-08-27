@@ -9,6 +9,7 @@ namespace CheckingDiffusionWindowsFormsApp
 {
     public partial class MainForm : Form
     {
+        private Timer timer;
         private List<Ball> balls;
         public MainForm()
         {
@@ -36,15 +37,26 @@ namespace CheckingDiffusionWindowsFormsApp
                     ball.OnHited += Ball_OnHited;
                     ball.Start();
                 }
+
+                timer.Interval = 20;
+                timer.Tick += Timer_Tick;
+                timer.Start();
             }
             else
             {
+                timer.Enabled = !timer.Enabled;
+
                 foreach (var ball in balls)
                 {
                     if (ball.IsMovable()) ball.Stop();
                     else ball.Start();
                 }
             }
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void Ball_OnHited(object sender, HitEventArgs e)

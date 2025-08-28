@@ -9,11 +9,11 @@ namespace Balls.Common
         private Timer _timer;
         protected Form form;
         protected Graphics graphics;
-        protected Color color;
+        protected Color color = Color.LightBlue;
 
         protected int centerX = 150;
         protected int centerY = 150;
-        protected int radius = 30;
+        protected int radius = 25;
 
         protected int vx = 10;
         protected int vy = 10;
@@ -30,10 +30,8 @@ namespace Balls.Common
             graphics = form.CreateGraphics();
 
             _timer = new Timer();
-            _timer.Interval = 50;
+            _timer.Interval = 20;
             _timer.Tick += _timer_Tick;
-
-            color = Color.LightBlue;
         }
         private void _timer_Tick(object sender, EventArgs e) => Move();
         public void Start() => _timer.Start();
@@ -53,7 +51,7 @@ namespace Balls.Common
             centerY += vy;
         }
 
-        public void Show() => Draw(Color.LightBlue);
+        public void Show() => Draw(color);
         private void Clear() => Draw(SystemColors.Control);
         private void Draw(Color color)
         {

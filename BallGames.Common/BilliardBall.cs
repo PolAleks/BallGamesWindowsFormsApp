@@ -9,7 +9,7 @@ namespace BallGames.Common
     {
         public event EventHandler<HitEventArgs> OnHited;
         public Color Color => color;
-        public int X { get { return centerX; } }
+        public int X => centerX;
         public int Y => centerY;
         public BilliardBall(Form form, Color color, Side side) : base(form)
         {

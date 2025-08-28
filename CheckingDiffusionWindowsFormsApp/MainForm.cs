@@ -40,7 +40,10 @@ namespace CheckingDiffusionWindowsFormsApp
                 }
                 else
                 {
-                    var resultDialog = MessageBox.Show("Повторить?", "Шарики равномерно перемешаны", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var resultDialog = MessageBox.Show("Эксперимент завершен. Шарики перемешаны равномерно по форме!\nПовторить?",
+                        "Ура товарищи!",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
 
                     if (resultDialog == DialogResult.Yes)
                     {

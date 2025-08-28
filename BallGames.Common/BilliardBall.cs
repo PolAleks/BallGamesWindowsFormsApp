@@ -1,16 +1,15 @@
-﻿using Balls.Common;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace BallGames.Common
+namespace Balls.Common
 {
     public class BilliardBall : MoveBall
     {
         public event EventHandler<HitEventArgs> OnHited;
         public Color Color => color;
-        public int X => centerX;
-        public int Y => centerY;
+        public float X => centerX;
+        public float Y => centerY;
         public BilliardBall(Form form, Color color, Side side) : base(form)
         {
             this.color = color;

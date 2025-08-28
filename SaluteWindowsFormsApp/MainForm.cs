@@ -7,6 +7,7 @@ namespace SaluteWindowsFormsApp
     public partial class MainForm : Form
     {
         private static Random random = new Random();
+
         public MainForm()
         {
             InitializeComponent();

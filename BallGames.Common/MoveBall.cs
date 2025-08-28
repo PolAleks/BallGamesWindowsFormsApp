@@ -10,6 +10,6 @@ namespace Balls.Common
             vy = GetSpeed();
         }
 
-        private int GetSpeed() => rand.Next(2, 6) * (rand.Next(2) == 0 ? 1 : -1);
+        private float GetSpeed() => rand.Next(2, 6) * (rand.Next(2) == 0 ? 1 : -1);
     }
 }

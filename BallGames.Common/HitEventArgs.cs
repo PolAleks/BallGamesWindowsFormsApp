@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Drawing;
 
-namespace BallGames.Common
+namespace Balls.Common
 {
     public class HitEventArgs : EventArgs
     {

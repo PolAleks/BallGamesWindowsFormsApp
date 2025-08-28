@@ -1,4 +1,4 @@
-﻿namespace BallGames.Common
+﻿namespace Balls.Common
 {
     public enum Side
     {

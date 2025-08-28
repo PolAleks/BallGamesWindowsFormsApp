@@ -11,12 +11,12 @@ namespace Balls.Common
         protected Graphics graphics;
         protected Color color = Color.LightBlue;
 
-        protected int centerX = 150;
-        protected int centerY = 150;
+        protected float centerX = 150f;
+        protected float centerY = 150f;
         protected int radius = 25;
 
-        protected int vx = 10;
-        protected int vy = 10;
+        protected float vx = 10f;
+        protected float vy = 10f;
 
         #region Границы поля
         public int LeftSide => radius;
@@ -56,7 +56,7 @@ namespace Balls.Common
         private void Draw(Color color)
         {
             var brush = new SolidBrush(color);
-            var rectangle = new Rectangle(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
+            var rectangle = new RectangleF(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
             graphics.FillEllipse(brush, rectangle);
         }
     }

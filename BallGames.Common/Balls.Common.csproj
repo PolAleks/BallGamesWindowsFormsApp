@@ -51,6 +51,7 @@
     <Compile Include="Ball.cs" />
     <Compile Include="RandomPointBall.cs" />
     <Compile Include="SaluteBall.cs" />
+    <Compile Include="ShotBall.cs" />
     <Compile Include="Side.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

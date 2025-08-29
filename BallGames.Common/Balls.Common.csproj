@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BilliardBall.cs" />
+    <Compile Include="BoomEventArgs.cs" />
     <Compile Include="CatchMoveBall.cs" />
     <Compile Include="HitEventArgs.cs" />
     <Compile Include="MoveBall.cs" />

@@ -1,9 +1,5 @@
 ﻿using Balls.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BallGames.Common
@@ -12,32 +8,26 @@ namespace BallGames.Common
     {
         private float g = 0.1f;
         public event EventHandler<BoomEventArgs> OnBaDaBoom;
-        public ShotBall(Form form) : base(form)
+        public ShotBall(Form form, float x) : base(form)
         {
+            centerX = x;
             centerY = BottomSide;
-            radius = rand.Next(2, 5);
-            vy = -Math.Abs(vy);
+            radius = 5;
+
+            vx = rand.Next(0, 3) * (rand.Next(2) == 0 ? 1 : -1);
+            vy = -Math.Abs(rand.Next(5,8));
         }
 
         protected override void Go()
         {
             base.Go();
             vy += g;
-            if (vy <= 0)
+            if (vy >= 0)
             {
                 Stop();
                 Clear();
-                OnBaDaBoom?.Invoke(this, new BoomEventArgs(rand.Next(7, 16)));
+                OnBaDaBoom?.Invoke(this, new BoomEventArgs(rand.Next(7, 16), centerX, centerY));
             }
-        }
-    }
-
-    public class BoomEventArgs : EventArgs
-    {
-        public int Count { get; }
-        public BoomEventArgs(int count)
-        {
-            Count = count;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Balls.Common
         {
             this.centerX = centerX;
             this.centerY = centerY;
-            radius = 10;
+            radius = rand.Next(4, 6);
             vy = -Math.Abs(vy);
         }
 

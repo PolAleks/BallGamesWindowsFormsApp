@@ -52,7 +52,7 @@ namespace Balls.Common
         }
 
         public void Show() => Draw(color);
-        private void Clear() => Draw(SystemColors.Control);
+        protected void Clear() => Draw(SystemColors.Control);
         private void Draw(Color color)
         {
             var brush = new SolidBrush(color);

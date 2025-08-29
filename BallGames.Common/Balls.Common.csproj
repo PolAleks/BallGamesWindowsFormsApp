@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BilliardBall.cs" />
+    <Compile Include="BoomEventArgs.cs" />
     <Compile Include="CatchMoveBall.cs" />
     <Compile Include="HitEventArgs.cs" />
     <Compile Include="MoveBall.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Ball.cs" />
     <Compile Include="RandomPointBall.cs" />
     <Compile Include="SaluteBall.cs" />
+    <Compile Include="ShotBall.cs" />
     <Compile Include="Side.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

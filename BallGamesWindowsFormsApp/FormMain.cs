@@ -9,7 +9,7 @@ namespace BallGamesWindowsFormsApp
 {
     public partial class FormMain : Form
     {
-        private List<MoveBall> balls;
+        private List<Ball> balls;
 
         public FormMain()
         {
@@ -21,7 +21,7 @@ namespace BallGamesWindowsFormsApp
             ClearForm();
             ButtonEnabled();
 
-            balls = new List<MoveBall>();
+            balls = new List<Ball>();
             for (int i = 0; i < 10; i++)
             {
                 var ball = new MoveBall(this);

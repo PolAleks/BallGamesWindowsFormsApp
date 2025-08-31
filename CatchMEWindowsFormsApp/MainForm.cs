@@ -10,7 +10,7 @@ namespace CatchMeWindowsFormsApp
 {
     public partial class MainForm : Form
     {
-        private List<CatchMoveBall> balls;
+        private List<Ball> balls;
         private int countBalls = 0;
         private Timer timer;
         public MainForm()
@@ -30,7 +30,7 @@ namespace CatchMeWindowsFormsApp
             countBalls = 0;
             ShowCountCaughtBalls();
 
-            balls = new List<CatchMoveBall>();
+            balls = new List<Ball>();
             for (int i = 0; i < 10; i++)
             {
                 var ball = new CatchMoveBall(this);

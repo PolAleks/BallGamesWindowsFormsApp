@@ -8,8 +8,6 @@ namespace Balls.Common
     {
         public event EventHandler<HitEventArgs> OnHited;
         public Color Color => color;
-        public float X => CenterX;
-        public float Y => CenterY;
         public BilliardBall(Form form, Color color, Side side) : base(form)
         {
             this.color = color;

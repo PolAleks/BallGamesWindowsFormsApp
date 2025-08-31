@@ -9,12 +9,12 @@ namespace Balls.Common
         private Timer timer;
         protected Form form;
         protected RectangleF bounds; //границы шара
-        protected float vx = 10f;
-        protected float vy = 10f;
+        protected float vx;
+        protected float vy;
 
         #region Параметры шара
-        protected Color color = Color.Coral;
-        protected float CenterX 
+        public Color color = Color.Coral;
+        public float CenterX 
         {
             get
             {
@@ -60,27 +60,36 @@ namespace Balls.Common
         public Ball(Form form)
         {
             this.form = form;
-            
+            InitialRadius();
             InitialBounds();
             InitialTimer();
+            InitialSpeed();
+        }
+
+        protected virtual void InitialRadius() => Radius = 15;
+
+        protected virtual void InitialSpeed()
+        {
+            vx = 10f;
+            vy = 10f;
         }
 
         private void InitialTimer()
         {
             timer = new Timer();
-            timer.Interval = 100;
+            timer.Interval = 20;
             timer.Tick += Timer_Tick;
         }
 
         private void InitialBounds()
         {
             Point point = GetPoint();
-
-            Radius = 15;
             Size size = new Size(Radius, Radius);
 
             bounds = new RectangleF(point, size);
         }
+
+        public bool Contains(Point point) => bounds.Contains(point);
 
         protected virtual Point GetPoint() => new Point(150, 150);
 
@@ -91,6 +100,7 @@ namespace Balls.Common
         public void Stop() => timer.Stop();
 
         public bool IsMovable() => timer.Enabled;
+
         public bool OnForm() => CenterX >= LeftSide && CenterX <= RightSide && CenterY >= TopSide && CenterY <= BottomSide;
 
         public void Move()
@@ -103,7 +113,7 @@ namespace Balls.Common
 
         public void Show() => Draw(color);
 
-        protected void Clear() => Draw(SystemColors.Control);
+        public void Clear() => Draw(SystemColors.Control);
 
         private void Draw(Color color)
         {

@@ -8,8 +8,11 @@ namespace Balls.Common
     {
         public CatchMoveBall(Form form) : base(form) 
         {
-            Radius = 25;
+            
         }
-        public bool Contains(Point point) => bounds.Contains(point);
+        protected override void InitialRadius()
+        {
+            Radius = 40;
+        }
     }
 }

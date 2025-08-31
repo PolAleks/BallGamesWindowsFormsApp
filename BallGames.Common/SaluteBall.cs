@@ -8,9 +8,10 @@ namespace Balls.Common
         private float g = 0.2f;
         public SaluteBall(Form form, float centerX, float centerY) : base(form)
         {
-            this.centerX = centerX;
-            this.centerY = centerY;
-            radius = rand.Next(4, 6);
+            CenterX = centerX;
+            CenterY = centerY;
+            Radius = rand.Next(3, 7);
+
             vy = -Math.Abs(vy);
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Balls.Common
@@ -8,8 +9,13 @@ namespace Balls.Common
         protected static Random rand = new Random();
         public RandomPointBall(Form form) : base(form)
         {
-            centerX = rand.Next(LeftSide, RightSide);
-            centerY = rand.Next(TopSide, BottomSide);
+            bounds.Location = GetPoint();
+        }
+        protected override Point GetPoint()
+        {
+            int x = rand.Next(LeftSide, RightSide);
+            int y = rand.Next(TopSide, BottomSide); 
+            return new Point(x, y);
         }
     }
 }

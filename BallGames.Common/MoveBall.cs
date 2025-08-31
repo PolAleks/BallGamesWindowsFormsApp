@@ -8,6 +8,8 @@ namespace Balls.Common
         {
             vx = GetSpeed();
             vy = GetSpeed();
+
+            Radius = 15;
         }
 
         private float GetSpeed() => rand.Next(2, 6) * (rand.Next(2) == 0 ? 1 : -1);

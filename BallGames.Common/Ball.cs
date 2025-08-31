@@ -6,38 +6,92 @@ namespace Balls.Common
 {
     public class Ball
     {
-        private Timer _timer;
+        private Timer timer;
         protected Form form;
-        protected Graphics graphics;
-        protected Color color = Color.LightBlue;
-
-        protected float centerX = 150f;
-        protected float centerY = 150f;
-        protected int radius = 25;
-
+        protected RectangleF bounds; //границы шара
         protected float vx = 10f;
         protected float vy = 10f;
 
-        #region Границы поля
-        public int LeftSide => radius;
-        public int RightSide => form.ClientSize.Width - radius;
-        public int TopSide => radius;
-        public int BottomSide => form.ClientSize.Height - radius;
+        #region Параметры шара
+        protected Color color = Color.Coral;
+        protected float CenterX 
+        {
+            get
+            {
+                return bounds.X + Radius;
+            }
+            set
+            {
+                bounds.X = value - Radius;
+            }
+        }
+        protected float CenterY
+        {
+            get
+            {
+                return bounds.Y + Radius;
+            }
+            set
+            {
+                bounds.Y = value - Radius;
+            }
+        }
+
+        protected int Radius
+        {
+            get { return (int)bounds.Width / 2; }
+            set 
+            { 
+                bounds.Width = value * 2;
+                bounds.Height = value * 2;
+            }
+        }
+
         #endregion
+
+
+        #region Границы поля
+        public int LeftSide => Radius;
+        public int RightSide => form.ClientSize.Width - Radius;
+        public int TopSide => Radius;
+        public int BottomSide => form.ClientSize.Height - Radius;
+        #endregion
+
         public Ball(Form form)
         {
             this.form = form;
-            graphics = form.CreateGraphics();
-
-            _timer = new Timer();
-            _timer.Interval = 20;
-            _timer.Tick += _timer_Tick;
+            
+            InitialBounds();
+            InitialTimer();
         }
-        private void _timer_Tick(object sender, EventArgs e) => Move();
-        public void Start() => _timer.Start();
-        public void Stop() => _timer.Stop();
-        public bool IsMovable() => _timer.Enabled;
-        public bool OnForm() => centerX >= LeftSide && centerX <= RightSide && centerY >= TopSide && centerY <= BottomSide;
+
+        private void InitialTimer()
+        {
+            timer = new Timer();
+            timer.Interval = 100;
+            timer.Tick += Timer_Tick;
+        }
+
+        private void InitialBounds()
+        {
+            Point point = GetPoint();
+
+            Radius = 15;
+            Size size = new Size(Radius, Radius);
+
+            bounds = new RectangleF(point, size);
+        }
+
+        protected virtual Point GetPoint() => new Point(150, 150);
+
+        private void Timer_Tick(object sender, EventArgs e) => Move();
+
+        public void Start() => timer.Start();
+
+        public void Stop() => timer.Stop();
+
+        public bool IsMovable() => timer.Enabled;
+        public bool OnForm() => CenterX >= LeftSide && CenterX <= RightSide && CenterY >= TopSide && CenterY <= BottomSide;
 
         public void Move()
         {
@@ -45,19 +99,19 @@ namespace Balls.Common
             Go();
             Show();
         }
-        protected virtual void Go()
-        {
-            centerX += vx;
-            centerY += vy;
-        }
+        protected virtual void Go() => bounds.Offset(vx, vy);
 
         public void Show() => Draw(color);
+
         protected void Clear() => Draw(SystemColors.Control);
+
         private void Draw(Color color)
         {
-            var brush = new SolidBrush(color);
-            var rectangle = new RectangleF(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
-            graphics.FillEllipse(brush, rectangle);
+            using (Brush brush = new SolidBrush(color))
+            using (Graphics graphics = form.CreateGraphics())
+            {
+                graphics.FillEllipse(brush, bounds);
+            }
         }
     }
 }

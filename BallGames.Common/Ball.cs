@@ -129,5 +129,21 @@ namespace Balls.Common
                 graphics.FillEllipse(brush, bounds);
             }
         }
+
+        public void Speed(SpeedBall slow)
+        {
+            switch (slow)
+            {
+                case SpeedBall.Slow: 
+                    timer.Interval = 60;
+                    break;
+                case SpeedBall.Fast: 
+                    timer.Interval = 10;
+                    break;
+                default:
+                    timer.Interval = 20;
+                    break;
+            }
+        }
     }
 }

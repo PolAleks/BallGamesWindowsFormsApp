@@ -1,13 +1,8 @@
 ﻿using Balls.Common;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BallGames.Common
+namespace Balls.Common
 {
     public class BombBall : FruitBallRandomSize
     {

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BananaBall.cs" />
     <Compile Include="BilliardBall.cs" />
     <Compile Include="BombBall.cs" />
     <Compile Include="BoomEventArgs.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="ShotBall.cs" />
     <Compile Include="FruitBallRandomSize.cs" />
     <Compile Include="Side.cs" />
+    <Compile Include="SpeedBall.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

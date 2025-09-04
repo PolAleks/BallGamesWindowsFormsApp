@@ -10,7 +10,7 @@ namespace CheckingDiffusionWindowsFormsApp
     public partial class MainForm : Form
     {
         private Timer timer;
-        private List<BilliardBall> balls;
+        private List<Ball> balls;
         private int mergeForm;
         private bool testIsOver = false;
         public MainForm()
@@ -76,7 +76,7 @@ namespace CheckingDiffusionWindowsFormsApp
 
         private void GetBalls()
         {
-            balls = new List<BilliardBall>();
+            balls = new List<Ball>();
 
             for (int i = 0; i < 10; i++)
             {
@@ -101,11 +101,11 @@ namespace CheckingDiffusionWindowsFormsApp
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            var countLeftSideRedBall = balls.Where(b => b.Color == Color.Red).Count(b => b.X < mergeForm);
-            var countLeftSideBlueBall = balls.Where(b => b.Color == Color.Blue).Count(b => b.X > mergeForm);
+            var countLeftSideRedBall = balls.Where(ball => ball.color == Color.Red).Count(ball => ball.CenterX < mergeForm);
+            var countLeftSideBlueBall = balls.Where(ball => ball.color == Color.Blue).Count(ball => ball.CenterX > mergeForm);
 
-            var countRightSideRedBall = balls.Where(b => b.Color == Color.Red).Count(b => b.X > mergeForm);
-            var countRightSideBlueBall = balls.Where(b => b.Color == Color.Blue).Count(b => b.X < mergeForm);
+            var countRightSideRedBall = balls.Where(ball => ball.color == Color.Red).Count(ball => ball.CenterX > mergeForm);
+            var countRightSideBlueBall = balls.Where(ball => ball.color == Color.Blue).Count(ball => ball.CenterX < mergeForm);
 
             if (countLeftSideRedBall == countRightSideRedBall && countLeftSideBlueBall == countRightSideBlueBall)
             {

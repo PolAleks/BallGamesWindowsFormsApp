@@ -1,8 +1,8 @@
-﻿using Balls.Common;
-using System;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
-namespace BallGames.Common
+namespace Balls.Common
 {
     public class ShotBall : MoveBall
     {
@@ -10,14 +10,16 @@ namespace BallGames.Common
         public event EventHandler<BoomEventArgs> OnBaDaBoom;
         public ShotBall(Form form, float x) : base(form)
         {
-            centerX = x;
-            centerY = BottomSide;
-            radius = 5;
-
-            vx = rand.Next(0, 3) * (rand.Next(2) == 0 ? 1 : -1);
-            vy = -Math.Abs(rand.Next(5,8));
+            CenterX = x;
+            CenterY = BottomSide;            
         }
 
+        protected override void InitialRadius() => Radius = 7;
+        protected override void InitialSpeed()
+        {
+            vx = rand.Next(0, 3) * (rand.Next(2) == 0 ? 1 : -1);
+            vy = -Math.Abs(rand.Next(5, 8));
+        }
         protected override void Go()
         {
             base.Go();
@@ -25,8 +27,8 @@ namespace BallGames.Common
             if (vy >= 0)
             {
                 Stop();
+                OnBaDaBoom?.Invoke(this, new BoomEventArgs(rand.Next(7, 16), CenterX, CenterY));
                 Clear();
-                OnBaDaBoom?.Invoke(this, new BoomEventArgs(rand.Next(7, 16), centerX, centerY));
             }
         }
     }

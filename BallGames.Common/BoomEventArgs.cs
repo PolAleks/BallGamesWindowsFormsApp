@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BallGames.Common
+namespace Balls.Common
 {
     public class BoomEventArgs : EventArgs
     {

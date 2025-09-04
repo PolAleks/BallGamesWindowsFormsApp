@@ -8,24 +8,22 @@ namespace Balls.Common
     {
         public event EventHandler<HitEventArgs> OnHited;
         public Color Color => color;
-        public float X => centerX;
-        public float Y => centerY;
         public BilliardBall(Form form, Color color, Side side) : base(form)
         {
             this.color = color;
             switch (side)
             {
                 case Side.Left: 
-                    centerX = rand.Next(LeftSide, form.ClientSize.Width / 2 - radius);
+                    CenterX = rand.Next(LeftSide, form.ClientSize.Width / 2 - Radius);
                     break;
                 case Side.Right:
-                    centerX = rand.Next(form.ClientSize.Width / 2 - radius, RightSide);
+                    CenterX = rand.Next(form.ClientSize.Width / 2 - Radius, RightSide);
                     break;
                 case Side.Top:
-                    centerY = rand.Next(TopSide, form.ClientSize.Height / 2 - radius);
+                    CenterY = rand.Next(TopSide, form.ClientSize.Height / 2 - Radius);
                     break;
                 case Side.Bottom:
-                    centerY = rand.Next(form.ClientSize.Width / 2  + radius, BottomSide);
+                    CenterY = rand.Next(form.ClientSize.Width / 2  + Radius, BottomSide);
                     break;
             }
         }
@@ -35,27 +33,27 @@ namespace Balls.Common
         protected override void Go()
         {
             base.Go();
-            if (centerX <= LeftSide)
+            if (CenterX < LeftSide)
             {
-                centerX = LeftSide;
+                CenterX = LeftSide;
                 vx = -vx;
                 OnHited?.Invoke(this, new HitEventArgs(Side.Left));
             }
-            if (centerX >= RightSide)
+            if (CenterX > RightSide)
             {
-                centerX = RightSide;
+                CenterX = RightSide;
                 vx = -vx;
                 OnHited?.Invoke(this, new HitEventArgs(Side.Right));
             }
-            if (centerY <= TopSide)
+            if (CenterY < TopSide)
             {
-                centerY = TopSide;
+                CenterY = TopSide;
                 vy = -vy;
                 OnHited?.Invoke(this, new HitEventArgs(Side.Top));
             }
-            if (centerY >= BottomSide)
+            if (CenterY > BottomSide)
             {
-                centerY = BottomSide;
+                CenterY = BottomSide;
                 vy = -vy;
                 OnHited?.Invoke(this, new HitEventArgs(Side.Bottom));
             }

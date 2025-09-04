@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Balls.Common
@@ -8,16 +9,24 @@ namespace Balls.Common
         private float g = 0.2f;
         public SaluteBall(Form form, float centerX, float centerY) : base(form)
         {
-            this.centerX = centerX;
-            this.centerY = centerY;
-            radius = rand.Next(4, 6);
-            vy = -Math.Abs(vy);
+            CenterX = centerX;
+            CenterY = centerY;
         }
 
         protected override void Go()
         {
             base.Go();
             vy += g;
+        }
+        protected override void InitialRadius()
+        {
+            Radius = rand.Next(5, 17);
+        }
+
+        protected override void InitialSpeed()
+        {
+            base.InitialSpeed();
+            vy = -Math.Abs(vy);
         }
     }
 }

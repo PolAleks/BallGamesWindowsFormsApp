@@ -13,7 +13,7 @@ namespace Balls.Common
         protected float vy;
 
         #region Параметры шара
-        public Color color = Color.Coral;
+        public Color color;
         public float CenterX 
         {
             get
@@ -64,6 +64,12 @@ namespace Balls.Common
             InitialBounds();
             InitialTimer();
             InitialSpeed();
+            InitialColor();
+        }
+
+        protected virtual void InitialColor()
+        {
+            color = Color.Coral;
         }
 
         protected virtual void InitialRadius() => Radius = 15;

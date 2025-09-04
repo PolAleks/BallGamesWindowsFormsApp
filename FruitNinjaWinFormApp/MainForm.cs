@@ -9,14 +9,16 @@ namespace FruitNinjaWinFormApp
     {
         private List<Ball> fruits;
         private Timer timer;
+        private Timer slowMotionTimer;
         private int countHitBall = 0;
         private static Random random = new Random();
+        private SpeedBall currentSpeed = SpeedBall.Normal;
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, System.EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {            
             InitialGame();
         }
@@ -24,19 +26,45 @@ namespace FruitNinjaWinFormApp
         private void InitialGame()
         {
             fruits = new List<Ball>();
+            InitialShotBallsTimer();
+            InitialSlowMotionTimer();
 
+        }
+
+        private void InitialSlowMotionTimer()
+        {
+            slowMotionTimer = new Timer();
+            slowMotionTimer.Interval = 5000;
+            slowMotionTimer.Tick += EndSlowMotionTimer_Tick;
+        }
+
+        private void EndSlowMotionTimer_Tick(object sender, EventArgs e)
+        {
+            currentSpeed = SpeedBall.Normal;
+            SetSpeedMotionBall();
+        }
+
+        private void SetSpeedMotionBall()
+        {
+            fruits.ForEach(f => f.Speed(currentSpeed));
+            slowMotionTimer.Enabled = !slowMotionTimer.Enabled;
+        }
+
+        private void InitialShotBallsTimer()
+        {
             timer = new Timer();
             timer.Interval = 2500;
             timer.Tick += Timer_Tick;
             timer.Start();
         }
 
-        private void Timer_Tick(object sender, System.EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             int count = random.Next(5, 12);
             for (int i = 0; i < count; i++)
             {
                 Ball fruit = GenerateFruit();
+                fruit.Speed(currentSpeed);
                 fruits.Add(fruit);
                 fruit.Start();
             }
@@ -47,6 +75,7 @@ namespace FruitNinjaWinFormApp
             switch (random.Next(10))
             {
                 case 0: return new BombBall(this);
+                case 1: return new BananaBall(this);
                 default: return new FruitBallRandomSize(this);
             }
         }
@@ -61,6 +90,13 @@ namespace FruitNinjaWinFormApp
                     {
                         GameOver();
                     }
+
+                    if (fruit is BananaBall && currentSpeed == SpeedBall.Normal)
+                    {
+                        currentSpeed = SpeedBall.Slow;
+                        SetSpeedMotionBall();
+                    }
+
                     KillBall(fruit);
                     UpdateCountHitBall();
 

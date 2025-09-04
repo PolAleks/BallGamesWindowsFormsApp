@@ -4,14 +4,13 @@ using System.Windows.Forms;
 
 namespace Balls.Common
 {
-    public class ShotBallRandomSize : MoveBall
+    public class FruitBallRandomSize : MoveBall
     {
         private static readonly Color[] basicColors = new Color[]
         {
             Color.Red,
             Color.Green,
             Color.Blue,
-            Color.Yellow,
             Color.Magenta,
             Color.Cyan,
             Color.Orange,
@@ -19,12 +18,11 @@ namespace Balls.Common
             Color.Brown,
             Color.Pink,
             Color.White,
-            Color.Black,
             Color.Gray
         };
 
         private float g = 0.2f;
-        public ShotBallRandomSize(Form form) : base(form)
+        public FruitBallRandomSize(Form form) : base(form)
         {
             CenterY = BottomSide;
         }

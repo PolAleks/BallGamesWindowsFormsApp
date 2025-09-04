@@ -44,8 +44,14 @@ namespace FruitNinjaWinFormApp
             {
                 if (ball.Contains(e.Location))
                 {
-                    OnHitBall(ball);
+                    KillBall(ball);
                     UpdateCountHitBall();
+
+                    break;
+                }
+                if (!ball.OnForm())
+                {
+                    KillBall(ball);
 
                     break;
                 }
@@ -54,7 +60,7 @@ namespace FruitNinjaWinFormApp
 
         private void UpdateCountHitBall() => hitBallValueLabel.Text = (++countHitBall).ToString();
 
-        private void OnHitBall(Ball ball)
+        private void KillBall(Ball ball)
         {
             ball.Stop();
             ball.Clear();

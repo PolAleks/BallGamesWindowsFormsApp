@@ -44,6 +44,10 @@ namespace FruitNinjaWinFormApp
             {
                 if (ball.Contains(e.Location))
                 {
+                    if(ball.color == Color.Black)
+                    {
+                        GameOver();
+                    }
                     KillBall(ball);
                     UpdateCountHitBall();
 
@@ -56,6 +60,20 @@ namespace FruitNinjaWinFormApp
                     break;
                 }
             }
+        }
+
+        private void GameOver()
+        {
+            timer.Stop();
+            foreach (var ball in balls)
+            {
+                ball.Stop();
+            }
+            var resultDialog = MessageBox.Show("Увы. Вы проиграли(\nПопробуем снова?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+            if(resultDialog == DialogResult.Yes)
+                Application.Restart();
+            else
+                Application.Exit();
         }
 
         private void UpdateCountHitBall() => hitBallValueLabel.Text = (++countHitBall).ToString();

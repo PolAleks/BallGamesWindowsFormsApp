@@ -11,6 +11,7 @@ namespace FruitNinjaWinFormApp
         private List<Ball> balls;
         private Timer timer;
         private int countHitBall = 0;
+        private static Random random = new Random();
         public MainForm()
         {
             InitializeComponent();
@@ -26,16 +27,20 @@ namespace FruitNinjaWinFormApp
             balls = new List<Ball>();
 
             timer = new Timer();
-            timer.Interval = 1000;
+            timer.Interval = 2500;
             timer.Tick += Timer_Tick;
             timer.Start();
         }
 
         private void Timer_Tick(object sender, System.EventArgs e)
         {
-            var ball = new ShotBallRandomSize(this);
-            balls.Add(ball);
-            ball.Start();
+            int count = random.Next(5, 16);
+            for (int i = 0; i < count; i++)
+            {
+                var ball = new ShotBallRandomSize(this);
+                balls.Add(ball);
+                ball.Start();
+            }
         }
 
         private void MainForm_MouseMove(object sender, MouseEventArgs e)

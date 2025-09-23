@@ -89,15 +89,15 @@ namespace Balls.Common
 
         private void InitialBounds()
         {
-            Point point = GetPoint();
-            Size size = new Size(Radius, Radius);
+            Point point = GetCenterPoint();
+            Size size = new Size(2 * Radius, 2 * Radius);
 
             bounds = new RectangleF(point, size);
         }
 
         public bool Contains(Point point) => bounds.Contains(point);
 
-        protected virtual Point GetPoint() => new Point(150, 150);
+        protected virtual Point GetCenterPoint() => new Point(150, 150);
 
         private void Timer_Tick(object sender, EventArgs e) => Move();
 

@@ -8,7 +8,7 @@ namespace Balls.Common
     {
         protected static Random rand = new Random();
         public RandomPointBall(Form form) : base(form) { }
-        protected override Point GetPoint()
+        protected override Point GetCenterPoint()
         {
             int x = rand.Next(LeftSide, RightSide);
             int y = rand.Next(TopSide, BottomSide); 
